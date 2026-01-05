@@ -1,0 +1,59 @@
+[
+  {
+    "_id": "9411ca63-22c4-47ee-b3d4-a3e213882e70",
+    "problem": "crash",
+    "description": "",
+    "rootCauses": [],
+    "actions": [],
+    "tags": [],
+    "createdAt": "2026-01-05T17:25:58.992Z",
+    "status": "Draft"
+  },
+  {
+    "_id": "02cc4df9-6665-4e11-afb7-3f4455a2c840",
+    "problem": "hgfhxg",
+    "description": "hgvchgv",
+    "rootCauses": [
+      "hgvxshgv"
+    ],
+    "actions": [
+      "hgvdchg"
+    ],
+    "tags": [
+      "jhjhxv"
+    ],
+    "createdAt": "2026-01-05T17:23:28.499Z",
+    "status": "Draft"
+  },
+  {
+    "_id": "b53a5ba3-12b2-4e95-bfc8-00110035b9fa",
+    "problem": "Data is not loading",
+    "description": "Data is not getting fetched, I am using fetch method and trying to extract the data using async function",
+    "rootCauses": [
+      "It was a cors error, the http request is not permitted to ac"
+    ],
+    "actions": [
+      "check the api endpoint and fix it",
+      "keep in mind (proxy and env variable"
+    ],
+    "tags": [
+      "by saurabh"
+    ],
+    "createdAt": "2026-01-05T14:01:22.358Z",
+    "status": "Draft"
+  },
+  {
+    "_id": "1a86c779-62aa-44fe-8788-c7cfa9203095",
+    "problem": "Production Outage",
+    "description": "The main service went down.",
+    "rootCauses": [
+      "DB overload"
+    ],
+    "actions": [
+      "create the distributed "
+    ],
+    "tags": [],
+    "createdAt": "2026-01-05T14:00:11.533Z",
+    "status": "Draft"
+  }
+]
