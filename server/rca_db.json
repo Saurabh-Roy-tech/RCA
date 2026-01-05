@@ -1,59 +1,184 @@
 [
   {
-    "_id": "9411ca63-22c4-47ee-b3d4-a3e213882e70",
-    "problem": "crash",
-    "description": "",
-    "rootCauses": [],
-    "actions": [],
-    "tags": [],
-    "createdAt": "2026-01-05T17:25:58.992Z",
-    "status": "Draft"
+    "problem": "Console error: Failed to fetch",
+    "description": "Browser console shows Failed to fetch when calling API.",
+    "rootCauses": ["Backend service down", "Incorrect API URL"],
+    "actions": ["Restarted backend service", "Corrected API endpoint"],
+    "tags": ["fetch", "api", "frontend"],
+    "source": "manual",
+    "status": "Final"
   },
   {
-    "_id": "02cc4df9-6665-4e11-afb7-3f4455a2c840",
-    "problem": "hgfhxg",
-    "description": "hgvchgv",
-    "rootCauses": [
-      "hgvxshgv"
-    ],
-    "actions": [
-      "hgvdchg"
-    ],
-    "tags": [
-      "jhjhxv"
-    ],
-    "createdAt": "2026-01-05T17:23:28.499Z",
-    "status": "Draft"
+    "problem": "SSL certificate error",
+    "description": "Users see NET::ERR_CERT_AUTHORITY_INVALID error.",
+    "rootCauses": ["Expired SSL certificate", "Incorrect certificate chain"],
+    "actions": ["Renewed SSL certificate", "Updated certificate chain"],
+    "tags": ["ssl", "security", "https"],
+    "source": "manual",
+    "status": "Final"
   },
   {
-    "_id": "b53a5ba3-12b2-4e95-bfc8-00110035b9fa",
-    "problem": "Data is not loading",
-    "description": "Data is not getting fetched, I am using fetch method and trying to extract the data using async function",
-    "rootCauses": [
-      "It was a cors error, the http request is not permitted to ac"
-    ],
-    "actions": [
-      "check the api endpoint and fix it",
-      "keep in mind (proxy and env variable"
-    ],
-    "tags": [
-      "by saurabh"
-    ],
-    "createdAt": "2026-01-05T14:01:22.358Z",
-    "status": "Draft"
+    "problem": "Images not loading in production",
+    "description": "Images work locally but not in production environment.",
+    "rootCauses": ["Wrong base URL", "CDN misconfiguration"],
+    "actions": ["Updated asset paths", "Fixed CDN config"],
+    "tags": ["cdn", "assets", "frontend"],
+    "source": "manual",
+    "status": "Final"
   },
   {
-    "_id": "1a86c779-62aa-44fe-8788-c7cfa9203095",
-    "problem": "Production Outage",
-    "description": "The main service went down.",
-    "rootCauses": [
-      "DB overload"
-    ],
-    "actions": [
-      "create the distributed "
-    ],
-    "tags": [],
-    "createdAt": "2026-01-05T14:00:11.533Z",
-    "status": "Draft"
+    "problem": "Session logout issue",
+    "description": "User session expires immediately after login.",
+    "rootCauses": ["Cookie secure flag misconfigured", "Domain mismatch"],
+    "actions": ["Fixed cookie settings", "Updated domain config"],
+    "tags": ["session", "authentication", "cookies"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Database write operation failing",
+    "description": "Data not saved, error thrown during insert operation.",
+    "rootCauses": ["Schema validation error", "Missing required field"],
+    "actions": ["Fixed schema", "Added input validation"],
+    "tags": ["database", "mongodb", "write-error"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Application crash after deployment",
+    "description": "Server crashes immediately after new release.",
+    "rootCauses": ["Incompatible dependency version", "Node version mismatch"],
+    "actions": ["Pinned dependency versions", "Updated Node runtime"],
+    "tags": ["deployment", "crash", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Infinite loading spinner",
+    "description": "UI shows loader indefinitely after button click.",
+    "rootCauses": ["Promise not resolved", "Missing error handling"],
+    "actions": ["Handled promise resolution", "Added error catch block"],
+    "tags": ["frontend", "async", "ui"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "API returns 401 Unauthorized",
+    "description": "API denies access even with valid token.",
+    "rootCauses": ["Authorization header missing", "Token parsing error"],
+    "actions": ["Fixed header passing", "Corrected token parsing"],
+    "tags": ["401", "auth", "api"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Webhook not triggered",
+    "description": "Third-party webhook events not received.",
+    "rootCauses": ["Wrong webhook URL", "Firewall blocking requests"],
+    "actions": ["Updated webhook endpoint", "Allowed webhook IPs"],
+    "tags": ["webhook", "integration", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Memory leak in Node.js app",
+    "description": "Memory usage keeps increasing over time.",
+    "rootCauses": ["Uncleared intervals", "Global object reference"],
+    "actions": ["Cleared intervals", "Removed global references"],
+    "tags": ["memory", "nodejs", "leak"],
+    "source": "manual",
+    "status": "Final"
+  },
+
+  {
+    "problem": "Incorrect timezone in logs",
+    "description": "Logs show incorrect timestamps.",
+    "rootCauses": ["Server timezone misconfigured"],
+    "actions": ["Updated server timezone", "Standardized UTC logging"],
+    "tags": ["logs", "timezone", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Search results missing recent data",
+    "description": "New records not appearing in search.",
+    "rootCauses": ["Search index delay", "Cache not refreshed"],
+    "actions": ["Triggered index rebuild", "Cleared cache"],
+    "tags": ["search", "indexing", "data"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Mobile UI layout broken",
+    "description": "Layout overlaps on small screen devices.",
+    "rootCauses": ["Missing responsive styles", "Hardcoded widths"],
+    "actions": ["Added responsive CSS", "Removed fixed widths"],
+    "tags": ["mobile", "css", "ui"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "API rate limit exceeded",
+    "description": "Requests blocked after multiple API calls.",
+    "rootCauses": ["No rate limit handling", "High request volume"],
+    "actions": ["Added rate limit handling", "Implemented retries"],
+    "tags": ["rate-limit", "api", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "User profile not updating",
+    "description": "Changes saved but not reflected in UI.",
+    "rootCauses": ["State not refreshed", "Cache issue"],
+    "actions": ["Refetched profile data", "Cleared cache"],
+    "tags": ["profile", "frontend", "state"],
+    "source": "manual",
+    "status": "Final"
+  },
+
+  {
+    "problem": "Payment success but order not created",
+    "description": "Payment completed but order missing.",
+    "rootCauses": ["Webhook delay", "Transaction not atomic"],
+    "actions": ["Made transaction atomic", "Handled webhook retries"],
+    "tags": ["payment", "orders", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Cron job not running",
+    "description": "Scheduled jobs not executing.",
+    "rootCauses": ["Cron service stopped", "Wrong schedule expression"],
+    "actions": ["Restarted cron service", "Fixed cron expression"],
+    "tags": ["cron", "scheduler", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "GraphQL query failing",
+    "description": "GraphQL returns validation error.",
+    "rootCauses": ["Schema mismatch", "Invalid query structure"],
+    "actions": ["Updated schema", "Fixed query syntax"],
+    "tags": ["graphql", "api", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "File download corrupted",
+    "description": "Downloaded files cannot be opened.",
+    "rootCauses": ["Incorrect response headers", "Binary data mishandling"],
+    "actions": ["Fixed headers", "Handled binary streams properly"],
+    "tags": ["files", "download", "backend"],
+    "source": "manual",
+    "status": "Final"
+  },
+  {
+    "problem": "Third-party API timeout",
+    "description": "External API calls frequently timeout.",
+    "rootCauses": ["No timeout config", "Slow third-party service"],
+    "actions": ["Added timeout handling", "Implemented fallback logic"],
+    "tags": ["timeout", "integration", "api"],
+    "source": "manual",
+    "status": "Final"
   }
 ]

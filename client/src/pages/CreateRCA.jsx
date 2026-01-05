@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
-import { Save, Plus, X, BrainCircuit, AlertTriangle, CheckCircle } from 'lucide-react';
+import { Save, ArrowLeft, Upload, FileText, X, Plus, BrainCircuit, AlertTriangle, CheckCircle } from 'lucide-react';
+import toast from 'react-hot-toast';
 
 const CreateRCA = () => {
     const navigate = useNavigate();
@@ -67,19 +68,27 @@ const CreateRCA = () => {
         const file = e.target.files[0];
         if (!file) return;
 
-        const formData = new FormData();
-        formData.append('pdf', file);
+        const uploadData = new FormData();
+        uploadData.append('pdf', file);
 
+        setLoading(true);
         try {
-            setLoading(true);
-            const res = await axios.post('http://localhost:5001/api/rca/upload-pdf', formData, {
-                headers: { 'Content-Type': 'multipart/form-data' }
+            const res = await axios.post('http://localhost:5001/api/rca/upload-pdf', uploadData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
             });
-            // Update URL to edit mode with the new ID, which will trigger the useEffect to load data
-            navigate(`/create?edit=${res.data._id}`);
+
+            // The backend currently creates a NEW RCA on upload. 
+            // So we should navigate to the view page of that new RCA.
+            toast.success('PDF uploaded and processed!');
+            navigate(`/rca/${res.data._id}`);
         } catch (err) {
             console.error(err);
-            alert('Failed to upload PDF and extract data.');
+            const msg = err.response && err.response.data && err.response.data.error
+                ? err.response.data.error
+                : 'Failed to upload PDF and extract data.';
+            toast.error(msg);
             setLoading(false);
         }
     };
