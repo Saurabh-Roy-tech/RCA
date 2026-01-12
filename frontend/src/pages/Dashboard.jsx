@@ -85,7 +85,7 @@ const Dashboard = () => {
             </div>
 
             {/* AI Smart Debug Section */}
-            <div className="card" style={{ marginBottom: '2rem', border: '1px solid var(--primary-color)', background: 'linear-gradient(to right, rgba(99, 102, 241, 0.05), transparent)' }}>
+            <div className="card" style={{ marginBottom: '2rem', border: '1px solid var(--primary-color)', background: 'linear-gradient(to right, rgba(224, 122, 95, 0.05), transparent)' }}>
                 <div
                     onClick={() => setShowDebugPanel(!showDebugPanel)}
                     style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', cursor: 'pointer' }}

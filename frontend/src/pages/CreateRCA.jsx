@@ -1,4 +1,4 @@
-import  { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { Save, ArrowLeft, Upload, FileText, X, Plus, BrainCircuit, AlertTriangle, CheckCircle } from 'lucide-react';
@@ -147,7 +147,7 @@ const CreateRCA = () => {
                 </p>
 
                 {!editId && (
-                    <div className="card" style={{ border: '1px dashed var(--primary-color)', padding: '1.5rem', textAlign: 'center', marginBottom: '2rem', background: 'rgba(99, 102, 241, 0.05)' }}>
+                    <div className="card" style={{ border: '1px dashed var(--primary-color)', padding: '1.5rem', textAlign: 'center', marginBottom: '2rem', background: 'rgba(224, 122, 95, 0.05)' }}>
                         <p style={{ fontWeight: '600', marginBottom: '0.5rem' }}>Have an existing RCA Report?</p>
                         <p style={{ fontSize: '0.875rem', color: 'var(--text-secondary)', marginBottom: '1rem' }}>
                             Upload your PDF report and our AI-powered engine will extract the problem, root causes, and actions for you.
@@ -267,7 +267,7 @@ const CreateRCA = () => {
                 {/* Intelligence Side Panel */}
                 <div>
                     {similarRCAs.length > 0 && (
-                        <div className="card animate-fade-in" style={{ border: '1px solid var(--primary-color)', backgroundColor: 'rgba(99, 102, 241, 0.05)', position: 'sticky', top: '1rem' }}>
+                        <div className="card animate-fade-in" style={{ border: '1px solid var(--primary-color)', backgroundColor: 'rgba(224, 122, 95, 0.05)', position: 'sticky', top: '1rem' }}>
                             <h3 className="heading-2" style={{ fontSize: '1rem', color: 'var(--primary-color)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                                 <BrainCircuit size={18} /> Similar Incidents Found
                             </h3>
