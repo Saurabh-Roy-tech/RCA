@@ -20,29 +20,29 @@ const Footer = () => {
                 <div>
                     <h3 style={{ fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem', color: 'var(--text-primary)' }}>Product</h3>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Features</a></li>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Integrations</a></li>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Pricing</a></li>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Changelog</a></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Features</span></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Integrations</span></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Pricing</span></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Changelog</span></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 style={{ fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem', color: 'var(--text-primary)' }}>Resources</h3>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Documentation</a></li>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>API Reference</a></li>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Community</a></li>
-                        <li><a href="#" style={{ textDecoration: 'none', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>Blog</a></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Documentation</span></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>API Reference</span></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Community</span></li>
+                        <li><span style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', cursor: 'default' }}>Blog</span></li>
                     </ul>
                 </div>
 
                 <div>
                     <h3 style={{ fontSize: '0.9rem', fontWeight: '600', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem', color: 'var(--text-primary)' }}>Connect</h3>
                     <div style={{ display: 'flex', gap: '1rem' }}>
-                        <a href="#" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s' }}><Github size={20} /></a>
-                        <a href="#" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s' }}><Twitter size={20} /></a>
-                        <a href="#" style={{ color: 'var(--text-secondary)', transition: 'color 0.2s' }}><Linkedin size={20} /></a>
+                        <span style={{ color: 'var(--text-secondary)', cursor: 'default' }}><Github size={20} /></span>
+                        <span style={{ color: 'var(--text-secondary)', cursor: 'default' }}><Twitter size={20} /></span>
+                        <span style={{ color: 'var(--text-secondary)', cursor: 'default' }}><Linkedin size={20} /></span>
                     </div>
                 </div>
             </div>
