@@ -35,7 +35,7 @@ const RCADetails = () => {
         try {
             await axios.delete(`http://localhost:5001/api/rca/${id}`);
             toast.success('RCA deleted successfully');
-            navigate('/');
+            navigate('/dashboard');
         } catch (err) {
             console.error(err);
             toast.error("Failed to delete RCA");
@@ -49,7 +49,7 @@ const RCADetails = () => {
     return (
         <div className="animate-fade-in" style={{ maxWidth: '900px', margin: '0 auto', position: 'relative' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
-                <Link to="/" className="btn btn-secondary" style={{ display: 'inline-flex', alignItems: 'center' }}>
+                <Link to="/dashboard" className="btn btn-secondary" style={{ display: 'inline-flex', alignItems: 'center' }}>
                     <ArrowLeft size={16} /> Back to Dashboard
                 </Link>
                 <div style={{ display: 'flex', gap: '1rem' }}>

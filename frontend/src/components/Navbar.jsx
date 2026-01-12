@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { LayoutDashboard, PlusCircle, BrainCircuit } from 'lucide-react';
+import { LayoutDashboard, PlusCircle, Lightbulb, Home } from 'lucide-react';
 
 const Navbar = () => {
     const location = useLocation();
@@ -10,14 +10,22 @@ const Navbar = () => {
             <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <Link to="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
                     <div style={{ padding: '0.5rem', backgroundColor: 'rgba(224, 122, 95, 0.1)', borderRadius: '8px' }}>
-                        <BrainCircuit color="var(--primary-color)" size={24} />
+                        <Lightbulb color="var(--primary-color)" size={24} />
                     </div>
-                    <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-primary)' }}>RCA Intelligence</span>
+                    <span style={{ fontSize: '1.25rem', fontWeight: '700', color: 'var(--text-primary)' }}>RCA System</span>
                 </Link>
                 <div style={{ display: 'flex', gap: '1rem' }}>
                     <Link
                         to="/"
                         className={`btn ${location.pathname === '/' ? 'btn-primary' : 'btn-secondary'}`}
+                        style={{ textDecoration: 'none' }}
+                    >
+                        <Home size={18} />
+                        Home
+                    </Link>
+                    <Link
+                        to="/dashboard"
+                        className={`btn ${location.pathname === '/dashboard' ? 'btn-primary' : 'btn-secondary'}`}
                         style={{ textDecoration: 'none' }}
                     >
                         <LayoutDashboard size={18} />

@@ -128,7 +128,7 @@ const CreateRCA = () => {
                 navigate(`/rca/${editId}`);
             } else {
                 await axios.post('http://localhost:5001/api/rca', payload);
-                navigate('/');
+                navigate('/dashboard');
             }
         } catch (err) {
             console.error(err);
@@ -255,7 +255,7 @@ const CreateRCA = () => {
                     </div>
 
                     <div style={{ display: 'flex', justifyContent: 'flex-end', gap: '1rem' }}>
-                        <button type="button" onClick={() => navigate('/')} className="btn btn-secondary">
+                        <button type="button" onClick={() => navigate('/dashboard')} className="btn btn-secondary">
                             Cancel
                         </button>
                         <button type="submit" className="btn btn-primary">
