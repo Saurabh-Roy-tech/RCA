@@ -38,7 +38,10 @@ const analyzeErrorWithContext = async (userQuery, rcaContext) => {
         const response = await result.response;
         return response.text();
     } catch (error) {
-        console.error("AI Service Error:", error);
+        console.error("AI Service Error:", error.message);
+        if (error.response) {
+            console.error("AI Service Error Details:", JSON.stringify(error.response, null, 2));
+        }
         throw new Error("Failed to generate AI response.");
     }
 };

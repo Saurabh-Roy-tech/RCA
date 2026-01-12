@@ -6,17 +6,8 @@ const { v4: uuidv4 } = require('uuid');
 const { getDBStatus } = require('../config/db');
 const { analyzeErrorWithContext } = require('../services/aiService');
 
-// File DB Path
-const DB_FILE = path.join(__dirname, '..', 'rca_db.json');
-
-// Helper for File DB
-const getFileDB = () => {
-    if (!fs.existsSync(DB_FILE)) {
-        fs.writeFileSync(DB_FILE, JSON.stringify([], null, 2));
-    }
-    return JSON.parse(fs.readFileSync(DB_FILE));
-};
-const saveFileDB = (data) => fs.writeFileSync(DB_FILE, JSON.stringify(data, null, 2));
+// // File DB Path
+// const DB_FILE = path.join(__dirname, '..', 'rca_db.json');
 
 // Helper: Parse PDF Text to RCA Fields
 const parseRCAText = (text) => {
@@ -32,7 +23,7 @@ const parseRCAText = (text) => {
     // Common pattern for the start of any new section. 
     // Matches a newline, optional space, one of the keywords, and a colon.
     // We use this as a lookahead to stop capturing content.
-    const lookaheadPattern = "(?:\\n\\s*(?:Problem|Incident|Issue|Description|Root Cause|Cause|Action|Fix|Resolution|Tags?|Keywords|Status)\\s*:|$)";
+    const lookaheadPattern = "(?:\\n\\s*(?:Problem|Incident|Issue|Description|Details|Summary|Overview|Root Cause|Cause|Action|Fix|Resolution|Tags?|Keywords|Status)\\s*:|$)";
 
     let hasMatch = false;
 
@@ -45,7 +36,7 @@ const parseRCAText = (text) => {
     }
 
     // 2. Description
-    const descRegex = new RegExp(`Description\\s*:\\s*(.*?)(?=${lookaheadPattern})`, 'is');
+    const descRegex = new RegExp(`(?:Description|Details|Summary|Overview)\\s*:\\s*(.*?)(?=${lookaheadPattern})`, 'is');
     const descMatch = text.match(descRegex);
     if (descMatch && descMatch[1]) {
         rca.description = descMatch[1].trim();
@@ -142,19 +133,6 @@ const getRCAs = async (req, res) => {
             }
             const rcas = await RCA.find(query).sort({ createdAt: -1 });
             res.json(rcas);
-        } else {
-            // File DB
-            let data = getFileDB();
-            if (search) {
-                const lowerSearch = search.toLowerCase();
-                data = data.filter(item =>
-                    (item.problem && item.problem.toLowerCase().includes(lowerSearch)) ||
-                    (item.description && item.description.toLowerCase().includes(lowerSearch)) ||
-                    (item.rootCauses && item.rootCauses.some(rc => rc.toLowerCase().includes(lowerSearch))) ||
-                    (item.rawText && item.rawText.toLowerCase().includes(lowerSearch))
-                );
-            }
-            res.json(data);
         }
     } catch (err) {
         console.error(err);
@@ -167,11 +145,6 @@ const getRCAById = async (req, res) => {
     try {
         if (getDBStatus()) {
             const rca = await RCA.findById(req.params.id);
-            if (!rca) return res.status(404).json({ error: 'RCA not found' });
-            res.json(rca);
-        } else {
-            const data = getFileDB();
-            const rca = data.find(item => item._id === req.params.id);
             if (!rca) return res.status(404).json({ error: 'RCA not found' });
             res.json(rca);
         }
@@ -188,17 +161,6 @@ const createRCA = async (req, res) => {
             const newRCA = new RCA(req.body);
             const savedRCA = await newRCA.save();
             res.status(201).json(savedRCA);
-        } else {
-            const data = getFileDB();
-            const newRCA = {
-                _id: uuidv4(),
-                ...req.body,
-                createdAt: new Date(),
-                status: 'Draft'
-            };
-            data.unshift(newRCA);
-            saveFileDB(data);
-            res.status(201).json(newRCA);
         }
     } catch (err) {
         console.error(err);
@@ -264,16 +226,6 @@ const uploadPDF = async (req, res) => {
             const newRCA = new RCA(newRCAObj);
             const savedRCA = await newRCA.save();
             res.status(201).json(savedRCA);
-        } else {
-            const data = getFileDB();
-            const newRCA = {
-                _id: uuidv4(),
-                ...newRCAObj,
-                createdAt: new Date(),
-            };
-            data.unshift(newRCA);
-            saveFileDB(data);
-            res.status(201).json(newRCA);
         }
 
     } catch (err) {
@@ -289,14 +241,6 @@ const updateRCA = async (req, res) => {
             const updatedRCA = await RCA.findByIdAndUpdate(req.params.id, req.body, { new: true });
             if (!updatedRCA) return res.status(404).json({ error: 'RCA not found' });
             res.json(updatedRCA);
-        } else {
-            const data = getFileDB();
-            const index = data.findIndex(i => i._id === req.params.id);
-            if (index === -1) return res.status(404).json({ error: "RCA not found" });
-
-            data[index] = { ...data[index], ...req.body };
-            saveFileDB(data);
-            res.json(data[index]);
         }
     } catch (err) {
         console.error(err);
@@ -310,12 +254,6 @@ const deleteRCA = async (req, res) => {
         if (getDBStatus()) {
             const result = await RCA.findByIdAndDelete(req.params.id);
             if (!result) return res.status(404).json({ error: 'RCA not found' });
-            res.json({ message: 'RCA deleted' });
-        } else {
-            const data = getFileDB();
-            const newData = data.filter(i => i._id !== req.params.id);
-            if (data.length === newData.length) return res.status(404).json({ error: 'RCA not found' });
-            saveFileDB(newData);
             res.json({ message: 'RCA deleted' });
         }
     } catch (err) {
@@ -334,15 +272,6 @@ const smartDebug = async (req, res) => {
         let allRCAs = [];
         if (getDBStatus()) {
             allRCAs = await RCA.find({}).select('problem rootCauses actions description tags');
-        } else {
-            const data = getFileDB();
-            allRCAs = data.map(r => ({
-                problem: r.problem,
-                rootCauses: r.rootCauses,
-                actions: r.actions,
-                description: r.description,
-                tags: r.tags
-            }));
         }
 
         const rawAnalysis = await analyzeErrorWithContext(query, allRCAs);
